@@ -16,7 +16,7 @@ const counterUI = document.createElement("div");
 
 function UI() {
   counterUI.innerHTML = `${counter} ${funUnit}`;
-};
+}
 
 UI();
 
