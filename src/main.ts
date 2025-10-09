@@ -32,3 +32,8 @@ button.addEventListener("click", () => {
   counter += 1;
   UI();
 });
+
+setInterval(() => {
+  counter += 1;
+  UI();
+}, 1000);
