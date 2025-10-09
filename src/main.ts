@@ -15,7 +15,7 @@ const funUnit = "Hi Five to Angel Gabby";
 const counterUI = document.createElement("div");
 
 function UI() {
-  counterUI.innerHTML = `${counter} ${funUnit}`;
+  counterUI.innerHTML = `${counter.toFixed(0)} ${funUnit}`;
 }
 
 UI();
@@ -32,8 +32,34 @@ button.addEventListener("click", () => {
   counter += 1;
   UI();
 });
-
+/*
 setInterval(() => {
   counter += 1;
   UI();
 }, 1000);
+*/
+
+let timestamp: number = 0;
+const frames = 1 / 1000;
+
+function ContinuousGrowth() {
+  const current = performance.now();
+
+  if (timestamp === 0) {
+    timestamp = current;
+  }
+
+  const unitRate = current - timestamp;
+
+  const growth = unitRate * frames;
+
+  counter += growth;
+
+  UI();
+
+  timestamp = current;
+
+  requestAnimationFrame(ContinuousGrowth);
+}
+
+requestAnimationFrame(ContinuousGrowth);
