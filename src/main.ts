@@ -5,6 +5,9 @@ import "./style.css";
 document.body.innerHTML = `
   <p>Example image asset: <img src="${exampleIconUrl}" class="icon" /></p>
 `;
+
+Daisy was here for live share example
+Diego was also here
 */
 import "./style.css";
 import emoji from "./tumblr_c016e4951490e803e0522d9d6ca08c35_3f750c1e_1280.png";
