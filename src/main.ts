@@ -12,32 +12,72 @@ Diego was also here
 import "./style.css";
 import emoji from "./tumblr_c016e4951490e803e0522d9d6ca08c35_3f750c1e_1280.png";
 import upgradeEmoji from "./Francis.png";
+import upgradeEmoji2 from "./Zag.png";
+import upgradeEmoji3 from "./Fox_Francine.png";
 
 let counter: number = 0;
 let growthRate: number = 0;
 const funUnit = "Hi-Five to Angel Gabby";
-const cost: number = 10;
+
+const upgradeFrancis = "Friend Francis";
+const costFrancis = 10;
+const rateFrancis = 0.1;
+let countFrancis: number = 0; 
+
+const upgradeZag = "Angel Zaggy";
+const costZag = 100;
+const rateZag = 2.0;
+let countZag: number = 0; 
+
+const upgradeFrancine = "Friend Francine";
+const costFrancine = 1000;
+const rateFrancine = 50.0;
+let countFrancine: number = 0; 
 
 const counterUI = document.createElement("div");
 const rateUI = document.createElement("div");
-const upgradeUI = document.createElement("div");
-const upgradeButton = document.createElement("button");
+const upgradeAUI = document.createElement("div");
+const upgradeBUI = document.createElement("div");
+const upgradeCUI = document.createElement("div");
+const upgradeAbutton = document.createElement("button");
+const upgradeBbutton = document.createElement("button");
+const upgradeCbutton = document.createElement("button");
+
+function calculateGrowthRate() {
+  growthRate = countFrancis * rateFrancis + countZag * rateZag + countFrancine * rateFrancine;
+};
 
 function UI() {
+  calculateGrowthRate();
+
   counterUI.innerHTML = `${counter.toFixed(0)} ${funUnit}`;
+  rateUI.innerHTML = `${growthRate.toFixed(1)} Casting Call/sec (${countFrancis} Francis helping, ${countZag} people Zag hired to help, ${countFrancine} files of documented help Francine has filed away)`;
 
-  rateUI.innerHTML = `${growthRate.toFixed(0)} Francis helping.`;
-
-  upgradeUI.innerHTML = `Purchase a Friend Francis for ${cost}`;
-
-  if (counter >= cost) {
-    upgradeButton.disabled = false;
-
-    upgradeButton.title = "Click to Purchase!";
+  upgradeAUI.innerHTML = `Guide ${upgradeFrancis} for ${costFrancis} (${countFrancis} tasks assigned)`;
+  if (counter >= costFrancis) {
+    upgradeAbutton.disabled = false;
+    upgradeAbutton.title = "Click to Purchase Francis!"
   } else {
-    upgradeButton.disabled = true;
+    upgradeAbutton.disabled = true;
+    upgradeAbutton.title = `Need ${costFrancis.toFixed(0)} Hi-Fives to purchase Francis.`;
+  }
 
-    upgradeButton.title = `Need ${cost.toFixed(0)} Hi-Fives to purchase.`;
+  upgradeBUI.innerHTML = `Hire ${upgradeZag} for ${costZag} (${countZag} Zag Wyld's on the case(Wrong show!).)`;
+  if (counter >= costZag) {
+    upgradeBbutton.disabled = false;
+    upgradeBbutton.title = "Click to Purchase Zag!"
+  } else {
+    upgradeBbutton.disabled = true;
+    upgradeBbutton.title = `Need ${costZag.toFixed(0)} Hi-Fives to purchase Zag.`;
+  }
+
+  upgradeCUI.innerHTML = `Give papers to ${upgradeFrancine} for ${costFrancine} (${countFrancine} stacks of paper for Francine to file.)`;
+  if (counter >= costFrancine) {
+    upgradeCbutton.disabled = false;
+    upgradeCbutton.title = "Click to Purchase Francine!"
+  } else {
+    upgradeCbutton.disabled = true;
+    upgradeCbutton.title = `Need ${costFrancine.toFixed(0)} Hi-Fives to purchase Francine.`;
   }
 }
 
@@ -56,13 +96,30 @@ button.addEventListener("click", () => {
   UI();
 });
 
-upgradeButton.innerHTML =
-  `<img src="${upgradeEmoji}" alt="Upgrade Francis" style="width: 60px; height: 60px;"><br>PURCHASE`;
+upgradeAbutton.innerHTML = `<img src="${upgradeEmoji}" alt="Upgrade A" style="width: 60px; height: 60px;"><br>${upgradeFrancis}`;
+upgradeAbutton.addEventListener("click", () => {
+  if (counter >= costFrancis) {
+    counter -= costFrancis;
+    countFrancis += 1;
+    UI();
+  }
+});
 
-upgradeButton.addEventListener("click", () => {
-  if (counter >= cost) {
-    counter -= cost;
-    growthRate += 1;
+upgradeBbutton.innerHTML = `<img src="${upgradeEmoji2}" alt="Upgrade A" style="width: 60px; height: 60px;"><br>${upgradeZag}`;
+upgradeBbutton.addEventListener("click", () => {
+  if (counter >= costZag) {
+    counter -= costZag;
+    countZag += 1;
+    UI();
+  }
+});
+
+upgradeCbutton.innerHTML = `<img src="${upgradeEmoji3}" alt="Upgrade A" style="width: 60px; height: 60px;"><br>${upgradeFrancine}`;
+upgradeCbutton.addEventListener("click", () => {
+  if (counter >= costFrancine) {
+    counter -= costFrancine;
+    countFrancine += 1;
+    UI();
   }
 });
 
@@ -72,39 +129,10 @@ document.body.append(
   document.createElement("br"),
   document.createElement("br"),
 );
-document.body.append(upgradeUI, upgradeButton);
-/*
-setInterval(() => {
-  counter += 1;
-  UI();
-}, 1000);
-*/
-/*
-let timestamp: number = 0;
-const frames = 1 / 1000;
 
-function ContinuousGrowth() {
-  const current = performance.now();
-
-  if (timestamp === 0) {
-    timestamp = current;
-  }
-
-  const unitRate = current - timestamp;
-
-  const growth = unitRate * frames;
-
-  counter += growth;
-
-  UI();
-
-  timestamp = current;
-
-  requestAnimationFrame(ContinuousGrowth);
-}
-
-requestAnimationFrame(ContinuousGrowth);
-*/
+document.body.append(upgradeAUI, upgradeAbutton, document.createElement("hr"));
+document.body.append(upgradeBUI, upgradeBbutton, document.createElement("hr"));
+document.body.append(upgradeCUI, upgradeCbutton, document.createElement("hr"));
 
 let timestamp: number = performance.now();
 
