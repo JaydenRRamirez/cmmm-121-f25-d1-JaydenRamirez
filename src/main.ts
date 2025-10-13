@@ -46,6 +46,9 @@ const upgradeCUI = document.createElement("div");
 const upgradeAbutton = document.createElement("button");
 const upgradeBbutton = document.createElement("button");
 const upgradeCbutton = document.createElement("button");
+const title = document.createElement("h1");
+title.textContent = "Angel Hare Clicker by Jayden Ramirez";
+title.classList.add("game-title");
 
 function calculateGrowthRate() {
   growthRate = countFrancis * rateFrancis + countZag * rateZag +
@@ -110,12 +113,25 @@ function UI() {
 UI();
 
 const button = document.createElement("button");
+const gameContainer = document.createElement("div");
+gameContainer.classList.add("game-container");
+gameContainer.prepend(title);
+document.body.appendChild(gameContainer);
+gameContainer.append(counterUI);
+gameContainer.append(rateUI);
+gameContainer.append(document.createElement("hr"));
+
+gameContainer.append(button);
+
+gameContainer.append(document.createElement("br"));
+gameContainer.append(document.createElement("br"));
+
+gameContainer.append(upgradeAUI, upgradeAbutton, document.createElement("hr"));
+gameContainer.append(upgradeBUI, upgradeBbutton, document.createElement("hr"));
+gameContainer.append(upgradeCUI, upgradeCbutton, document.createElement("hr"));
 
 button.innerHTML =
   `<img src="${emoji}" alt="Fun Emoji" style="width: 240px; height: 240px;">`;
-document.body.append(button);
-
-document.body.append(counterUI, button);
 
 button.addEventListener("click", () => {
   counter += 1;
@@ -151,17 +167,6 @@ upgradeCbutton.addEventListener("click", () => {
     UI();
   }
 });
-
-document.body.append(counterUI, rateUI, document.createElement("hr")); // Separator
-document.body.append(
-  button,
-  document.createElement("br"),
-  document.createElement("br"),
-);
-
-document.body.append(upgradeAUI, upgradeAbutton, document.createElement("hr"));
-document.body.append(upgradeBUI, upgradeBbutton, document.createElement("hr"));
-document.body.append(upgradeCUI, upgradeCbutton, document.createElement("hr"));
 
 let timestamp: number = performance.now();
 

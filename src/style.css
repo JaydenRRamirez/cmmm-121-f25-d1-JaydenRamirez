@@ -1,5 +1,42 @@
+/*
 .icon {
   width: 64px;
   vertical-align: top;
   border: 1px solid salmon;
+}
+*/
+
+body {
+  background-image: url("./Background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  gap: 16px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+body, div, button {
+  color: yellow;
+  text-shadow: 1px 1px 2px black; /* Optional: improves readability */
+}
+
+.game-title {
+  color: yellow;
+  text-shadow:
+    2px 2px 4px black,
+    0 0 10px purple,
+    0 0 20px rgba(128, 0, 128, 0.6);
 }
