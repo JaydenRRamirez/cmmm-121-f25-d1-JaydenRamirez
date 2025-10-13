@@ -27,9 +27,19 @@ interface Item {
 }
 
 const availableItems: Item[] = [
-  { name: "Friend Francis", baseCost: 10, growthRate: 0.1, image: upgradeEmoji },
+  {
+    name: "Friend Francis",
+    baseCost: 10,
+    growthRate: 0.1,
+    image: upgradeEmoji,
+  },
   { name: "Angel Zaggy", baseCost: 100, growthRate: 2.0, image: upgradeEmoji2 },
-  { name: "Friend Francine", baseCost: 1000, growthRate: 50.0, image: upgradeEmoji3 },
+  {
+    name: "Friend Francine",
+    baseCost: 1000,
+    growthRate: 50.0,
+    image: upgradeEmoji3,
+  },
 ];
 
 const itemCount = new Array(availableItems.length).fill(0); // countFrancis, countZag, etc.
@@ -44,7 +54,8 @@ title.textContent = "Angel Hare Clicker by Jayden Ramirez";
 title.classList.add("game-title");
 
 function getCurrentCost(index: number): number {
-  return availableItems[index].baseCost * Math.pow(priceMultiplier, itemCount[index]);
+  return availableItems[index].baseCost *
+    Math.pow(priceMultiplier, itemCount[index]);
 }
 
 function getTotalGrowthRate(): number {
@@ -60,9 +71,13 @@ function UI() {
 
   upgradeUIElements.forEach((ui, i) => {
     const cost = getCurrentCost(i);
-    ui.innerHTML = `Get ${availableItems[i].name} for ${cost.toFixed(2)} (${itemCount[i]} owned)`;
+    ui.innerHTML = `Get ${availableItems[i].name} for ${cost.toFixed(2)} (${
+      itemCount[i]
+    } owned)`;
     upgradeButtons[i].disabled = counter < cost;
-    upgradeButtons[i].title = counter >= cost ? "Click to buy!" : `Need ${cost.toFixed(2)} to buy`;
+    upgradeButtons[i].title = counter >= cost
+      ? "Click to buy!"
+      : `Need ${cost.toFixed(2)} to buy`;
   });
 }
 
@@ -93,9 +108,10 @@ button.addEventListener("click", () => {
 availableItems.forEach((item, i) => {
   const ui = document.createElement("div");
   const button = document.createElement("button");
-  
-  button.innerHTML = `<img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px;"><br>${item.name}`;
-  
+
+  button.innerHTML =
+    `<img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px;"><br>${item.name}`;
+
   upgradeUIElements.push(ui);
   upgradeButtons.push(button);
 
@@ -117,7 +133,7 @@ function ContinuousGrowth(current: number) {
   if (timestamp === null) {
     timestamp = current;
     requestAnimationFrame(ContinuousGrowth);
-    return
+    return;
   }
 
   const unitRate = (current - timestamp) / 1000;
@@ -133,4 +149,3 @@ function ContinuousGrowth(current: number) {
 }
 
 requestAnimationFrame(ContinuousGrowth);
-
