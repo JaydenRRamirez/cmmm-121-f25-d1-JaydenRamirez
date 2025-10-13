@@ -67,8 +67,9 @@ function UI() {
     growthRate.toFixed(1)
   } Casting Call/sec (${countFrancis} Francis helping, ${countZag} people Zag hired to help, ${countFrancine} files of documented help Francine has filed away)`;
 
-  upgradeAUI.innerHTML =
-    `Guide ${upgradeFrancis} for ${currentCostFrancis.toFixed(2)} (${countFrancis} tasks assigned)`;
+  upgradeAUI.innerHTML = `Guide ${upgradeFrancis} for ${
+    currentCostFrancis.toFixed(2)
+  } (${countFrancis} tasks assigned)`;
   if (counter >= currentCostFrancis) {
     upgradeAbutton.disabled = false;
     upgradeAbutton.title = "Click to Purchase Francis!";
@@ -79,8 +80,9 @@ function UI() {
     } Hi-Fives to purchase Francis.`;
   }
 
-  upgradeBUI.innerHTML =
-    `Hire ${upgradeZag} for ${currentCostZag.toFixed(2)} (${countZag} Zag Wyld's on the case(Wrong show!).)`;
+  upgradeBUI.innerHTML = `Hire ${upgradeZag} for ${
+    currentCostZag.toFixed(2)
+  } (${countZag} Zag Wyld's on the case(Wrong show!).)`;
   if (counter >= currentCostZag) {
     upgradeBbutton.disabled = false;
     upgradeBbutton.title = "Click to Purchase Zag!";
@@ -91,8 +93,9 @@ function UI() {
     } Hi-Fives to purchase Zag.`;
   }
 
-  upgradeCUI.innerHTML =
-    `Give papers to ${upgradeFrancine} for ${currentCostFrancine.toFixed(2)} (${countFrancine} stacks of paper for Francine to file.)`;
+  upgradeCUI.innerHTML = `Give papers to ${upgradeFrancine} for ${
+    currentCostFrancine.toFixed(2)
+  } (${countFrancine} stacks of paper for Francine to file.)`;
   if (counter >= currentCostFrancine) {
     upgradeCbutton.disabled = false;
     upgradeCbutton.title = "Click to Purchase Francine!";
