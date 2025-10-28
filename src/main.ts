@@ -7,7 +7,7 @@ import emoji from "./tumblr_c016e4951490e803e0522d9d6ca08c35_3f750c1e_1280.png";
 import upgradeEmoji2 from "./Zag.png";
 
 let counter: number = 0;
-const funUnit = "Hi-Five to Angel Gabby";
+const gameTitle = "Hi-Five to Angel Gabby";
 
 // Upgrade Definitions
 interface Item {
@@ -69,7 +69,7 @@ const cammyUpgradeIndex = availableItems.findIndex((item) =>
   item.name === "Angel Cammy"
 );
 
-let maddyUpgradeGimmick: boolean = false;
+let isMaddyBurnout: boolean = false;
 const maddyRate = -200;
 const maddyDebuff = "True intent";
 const maddyDebuffDescription = "Ah... she's burning down the site...";
@@ -92,7 +92,7 @@ function getCurrentCost(index: number): number {
 // Game State
 function getTotalGrowthRate(): number {
   return itemCount.reduce((total, count, i) => {
-    if (i === maddyUpgradeIndex && maddyUpgradeGimmick && count > 0) {
+    if (i === maddyUpgradeIndex && isMaddyBurnout && count > 0) {
       return total + maddyRate;
     }
 
@@ -102,14 +102,14 @@ function getTotalGrowthRate(): number {
 
 function UI() {
   const totalRate = getTotalGrowthRate();
-  counterUI.innerHTML = `${counter.toFixed(0)} ${funUnit}`;
+  counterUI.innerHTML = `${counter.toFixed(0)} ${gameTitle}`;
   rateUI.innerHTML = `${totalRate.toFixed(1)} Casting Call/sec`;
 
   upgradeUIElements.forEach((ui, i) => {
     const item = availableItems[i];
     const cost = getCurrentCost(i);
 
-    if (i === maddyUpgradeIndex && maddyUpgradeGimmick) {
+    if (i === maddyUpgradeIndex && isMaddyBurnout) {
       ui.innerHTML = `<span class="tricky-item">${maddyDebuff} for ${
         cost.toFixed(
           2,
@@ -173,7 +173,7 @@ availableItems.forEach((item, i) => {
 
       if (i === maddyUpgradeIndex) {
         if (itemCount[maddyUpgradeIndex] === 1) {
-          maddyUpgradeGimmick = true;
+          isMaddyBurnout = true;
           availableItems[i].name = maddyDebuff;
           availableItems[i].description = maddyDebuffDescription;
           availableItems[i].growthRate = maddyRate;
