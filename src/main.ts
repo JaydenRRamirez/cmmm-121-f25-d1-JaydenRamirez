@@ -6,6 +6,7 @@ import "./style.css";
 import emoji from "./tumblr_c016e4951490e803e0522d9d6ca08c35_3f750c1e_1280.png";
 import upgradeEmoji2 from "./Zag.png";
 
+// Game State
 let counter: number = 0;
 const gameTitle = "Hi-Five to Angel Gabby";
 
@@ -84,22 +85,6 @@ const upgradeButtons: HTMLButtonElement[] = [];
 title.textContent = "Angel Hare Clicker by Jayden Ramirez";
 title.classList.add("game-title");
 
-function getCurrentCost(index: number): number {
-  return availableItems[index].baseCost *
-    Math.pow(priceMultiplier, itemCount[index]);
-}
-
-// Game State
-function getTotalGrowthRate(): number {
-  return itemCount.reduce((total, count, i) => {
-    if (i === maddyUpgradeIndex && isMaddyBurnout && count > 0) {
-      return total + maddyRate;
-    }
-
-    return total + availableItems[i].growthRate * count;
-  }, 0);
-}
-
 function UI() {
   const totalRate = getTotalGrowthRate();
   counterUI.innerHTML = `${counter.toFixed(0)} ${gameTitle}`;
@@ -133,6 +118,22 @@ function UI() {
 }
 UI();
 
+function getCurrentCost(index: number): number {
+  return availableItems[index].baseCost *
+    Math.pow(priceMultiplier, itemCount[index]);
+}
+
+function getTotalGrowthRate(): number {
+  return itemCount.reduce((total, count, i) => {
+    if (i === maddyUpgradeIndex && isMaddyBurnout && count > 0) {
+      return total + maddyRate;
+    }
+
+    return total + availableItems[i].growthRate * count;
+  }, 0);
+}
+
+// Event Listeners
 const button = document.createElement("button");
 const gameContainer = document.createElement("div");
 gameContainer.classList.add("game-container");
