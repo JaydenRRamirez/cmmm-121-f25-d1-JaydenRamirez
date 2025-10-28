@@ -1,15 +1,3 @@
-/*
-import exampleIconUrl from "./noun-paperclip-7598668-00449F.png";
-import "./style.css";
-
-document.body.innerHTML = `
-  <p>Example image asset: <img src="${exampleIconUrl}" class="icon" /></p>
-`;
-
-Daisy was here for live share example
-Diego was also here
-*/
-
 import upgradeEmoji5 from "./Angel_Cammy.png";
 import upgradeEmoji3 from "./Fox_Francine.png";
 import upgradeEmoji from "./Francis.png";
@@ -21,6 +9,7 @@ import upgradeEmoji2 from "./Zag.png";
 let counter: number = 0;
 const funUnit = "Hi-Five to Angel Gabby";
 
+// Upgrade Definitions
 interface Item {
   name: string;
   baseCost: number;
@@ -86,6 +75,7 @@ const maddyDebuff = "True intent";
 const maddyDebuffDescription = "Ah... she's burning down the site...";
 const priceMultiplier = 1.15;
 
+// UI Elements
 const counterUI = document.createElement("div");
 const rateUI = document.createElement("div");
 const title = document.createElement("h1");
@@ -99,6 +89,7 @@ function getCurrentCost(index: number): number {
     Math.pow(priceMultiplier, itemCount[index]);
 }
 
+// Game State
 function getTotalGrowthRate(): number {
   return itemCount.reduce((total, count, i) => {
     if (i === maddyUpgradeIndex && maddyUpgradeGimmick && count > 0) {
@@ -200,6 +191,7 @@ let timestamp: number | null = null;
 let lastRandomGrowthUpdate: number | null = null;
 const RANDOM_UPDATE_INTERVAL_MS = 1000;
 
+// Core Game Loop
 function ContinuousGrowth(current: number) {
   if (timestamp === null) {
     timestamp = current;
