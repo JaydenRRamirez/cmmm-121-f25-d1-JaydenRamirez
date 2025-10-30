@@ -40,3 +40,22 @@ body, div, button {
     0 0 10px purple,
     0 0 20px rgba(128, 0, 128, 0.6);
 }
+
+@keyframes button-bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.bounce {
+  animation-name: button-bounce;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+}

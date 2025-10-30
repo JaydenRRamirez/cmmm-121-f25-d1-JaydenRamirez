@@ -1,3 +1,4 @@
+import bgMusic from "./456797__nikosardas__jazz_music_loop.mp3";
 import upgradeEmoji5 from "./Angel_Cammy.png";
 import upgradeEmoji3 from "./Fox_Francine.png";
 import upgradeEmoji from "./Francis.png";
@@ -8,7 +9,13 @@ import upgradeEmoji2 from "./Zag.png";
 
 // Game State
 let counter: number = 0;
+let firstClick: boolean = true;
 const gameTitle = "Hi-Five to Angel Gabby";
+
+// Music implementation based on https://github.com/Pl0the/cmpm-121-f25-d1-autmendo
+const music = new Audio(bgMusic);
+music.volume = 0.04;
+music.loop = true;
 
 // Upgrade Definitions
 interface Item {
@@ -148,12 +155,24 @@ gameContainer.append(button);
 gameContainer.append(document.createElement("br"));
 gameContainer.append(document.createElement("br"));
 
+// Bounce effect based on: https://github.com/t4ylo/cmpm-121-25-d1-taylorpearce
+function bounce() {
+  button.classList.remove("bounce");
+  void button.offsetWidth;
+  button.classList.add("bounce");
+}
+
 button.innerHTML =
   `<img src="${emoji}" alt="Fun Emoji" style="width: 240px; height: 240px;">`;
 
 button.addEventListener("click", () => {
   counter += 1;
   UI();
+  bounce();
+  if (firstClick) {
+    music.play();
+    firstClick = false;
+  }
 });
 
 availableItems.forEach((item, i) => {
